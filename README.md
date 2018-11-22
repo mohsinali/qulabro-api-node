@@ -1,2 +1,3 @@
-# qulabro-api-node
-DEBUG=qulabro-api:* npm start
+# Qulabro APIs
+Node v8.11.4
+
