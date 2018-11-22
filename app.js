@@ -20,6 +20,9 @@ const expressStatusMonitor = require('express-status-monitor');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
 
+// API Routers
+const userRouter = require('./controllers/api/v1/users');
+
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
 
 /**
@@ -90,7 +93,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-  if (req.path === '/api/upload') {
+  if (req.path === '/api/upload' || req.path.startsWith("/api/v1")) {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -176,7 +179,9 @@ app.post('/api/upload', upload.single('myFile'), apiController.postFileUpload);
 app.get('/api/pinterest', passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.getPinterest);
 app.post('/api/pinterest', passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.postPinterest);
 app.get('/api/google-maps', apiController.getGoogleMaps);
-app.get('/api/questions', passportConfig.isAuthenticated, questionsController.index);
+
+// API routers
+app.use('/api/v1', userRouter);
 
 /**
  * OAuth authentication routes. (Sign in)
