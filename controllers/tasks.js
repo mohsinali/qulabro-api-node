@@ -3,5 +3,7 @@
  * Home page.
  */
 exports.index = (req, res) => {
-  res.status(200).send({ 'questions': 'Hello' });
+  res.render('tasks', {
+    title: 'Tasks'
+  });
 };
