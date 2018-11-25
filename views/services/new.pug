@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  h1 Add new service
+  form(method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group.row
+      label(class='col-md-2 col-form-label font-weight-bold', for='name') Name
+      .col-md-8
+        input.form-control(type='text', name='name', id='name', autocomplete='name', autofocus=true)
+
+    .form-group.row
+      label(class='col-md-2 col-form-label font-weight-bold', for='name') Description
+      .col-md-8        
+        textarea.form-control(name="description", id="desc")
+
+    .form-group
+      .offset-md-2.col-md-8.p-1
+        button.btn.btn-primary(type='submit')
+          i.far.fa-envelope.fa-sm
+          | Add

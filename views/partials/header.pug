@@ -2,12 +2,17 @@
   .container
     a.navbar-brand(href='/')
       i.fas.fa-cube
-      | PQ APIs
+      | Unity
     button.navbar-toggler(type='button', data-toggle='collapse', data-target='.navbar-collapse')
       span.sr-only Toggle navigation
       span.navbar-toggler-icon
     .collapse.navbar-collapse
-      
+      ul.nav.navbar-nav
+        li.nav-item(class=(title === 'Home') ? 'active' : undefined)
+          a.nav-link(href='/') Home
+        li.nav-item(class=(title === 'Services') ? 'active' : undefined)
+          a.nav-link(href='/services') Services
+
       ul.nav.navbar-nav.ml-auto
         if !user
           li.nav-item(class=(title === 'Login') ? 'active' : undefined)
